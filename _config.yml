@@ -1,4 +1,5 @@
-#theme: jekyll-theme-midnight
 title: Thornska's homepage
 description: This is a test
-remote_theme: b2a3e8/jekyll-theme-console
+#theme: jekyll-theme-midnight
+#remote_theme: b2a3e8/jekyll-theme-console
+remote_thene: Arxero/darlog
