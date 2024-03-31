@@ -54,3 +54,25 @@ Let's study the program's syntactic constituents:
     - `;` is a semicolon. Semicolons are use to indicate the end of a line of `C` code. As a beginner, it can be confusing as to when to add a ";" at the end of a line or not. Let's not think to much about for now.
 - Line 3:
   - `}` is the matching curly brace from line 1, effectively closing the definition of the `main` function.
+
+## The secret ingredient is crime
+
+It is possible to send inputs to a program on the command line, like `./my_program arg0 arg1 arg2`. Unfortunately, doing so requires to understand several topics that we haven't addresed yet. This is quite crippling, because we are stuck with writing programs that can't take any input.
+
+But we can cheat.
+
+The compiler has a particular option `-D` that will allow us to replace a pattern of characters of our choice with anything we want in a source file. For instance, if I compile a file `program.c` like so: `cc -o program -D'$VALUE=0' program.c`,  the compiler will search the file `program.c` for every instances of the pattern `$VALUE` then replace them with `0` before actually compiling the file.
+
+Here is an example:
+```shell
+$> cat cheat.c
+int main() {
+  return VALUE;
+}
+$> cc -D'$VALUE'=0 cheat.c && ./a.out ; echo $?
+0
+$> cc -D'$VALUE'=1 cheat.c && ./a.out ; echo $?
+1
+```
+
+What we are actually doing here is abusing the "macro" system of the `C` "preprocessor". It's ugly and it has many flaws, but for now it will provide us with a way of simulating numeric inputs to our program.
