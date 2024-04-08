@@ -76,3 +76,15 @@ $> cc -D'$VALUE'=1 cheat.c && ./a.out ; echo $?
 ```
 
 What we are actually doing here is abusing the "macro" system of the `C` "preprocessor". It's ugly and it has many flaws, but for now it will provide us with a way of simulating numeric inputs to our program.
+
+## Variables
+
+As your programs will grow, you will need to be able to store some values. For example, you might need to save an intermediate result of a complex calculation and refer to this result through a meaningful name later on. That's exactly what variables are for.
+
+In order to store a value, a variable must be of the same "type" as this value. This is the same word "type" that we used earlier when describing the output type `int` of the `main` function. It's still too early to dive into a detailled `C` data types explanation for now, but we can introduce some very important notions to understand about types:
+
+- **Meaning**: a type defines the meaning of a value of that type. So far, we have encountered the type `int` only, and we know that it stands for an interger, a whole number. Therefore, whe know that any value of type `int` in a program must be understood as a whole number in the mathematical sense of the term, and not, say, a phone number or a bank acccount number although they might look like a whole numbers.
+
+- **Operations**: a type also defines the operations that are possible on values of that type. For example, it makes sense to perform an addition on two integer numbers: `2 + 3` equals `5`. However, adding two phone numbers or two bank account numbers does not.
+
+- **Size**: In `C`, types also define the size in bytes that a value of this type will hold in memory. We don't have to understand what a "byte" is for now, and it's enough to understand "one byte" as "one unit of memory". The basic types of `C`, like the `int` type, have an arbitrary size that is defined by the language itself. There are not that many basic types, and remembering their size is easy for the most common ones. In the case of `int`, its size is `4` bytes. This means that any value of type `int` will use 4 "units of memory", regardless if that value is 0 or a very large number. However, the fixed size of a type introduces a limitation: the number of values representable within that size is not infinite. We'll get back to this last comment later when we'll discover how values are actually encoded in the memory.
